@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/entrance/EnterGame.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/src/mario/Mario.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/mario/Mario2.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/src/role/Blood.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/src/role/Boom.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/src/role/Brick.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/src/role/Coin.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/src/role/Enemy.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/src/role/Pipe.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/src/role/Wave.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/src/ui/EnterFrame.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/src/ui/GameFrame.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/src/ui/LoginFrame.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/src/ui/RegisterFrame.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/src/util/KeyListener.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/src/util/Map.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/src/util/MusicUtil.java" charset="GB2312" />
+    <file url="PROJECT" charset="GB2312" />
+  </component>
+</project>
