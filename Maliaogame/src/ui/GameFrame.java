@@ -22,37 +22,37 @@ import util.Map;
 import util.MusicUtil;
 
 public class GameFrame extends JFrame {
-    // ³¬¼¶ÂêÀö:½çÃæĞèÒªÁ½¸ö³¬¼¶ÂêÀö
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public Mario mario;
     public Mario2 mario2;
-    // ·Ö±ğ¶¨Òå:Ë®¹Ü£¬½ğ±ÒºÍ×©¿é
+    // ï¿½Ö±ï¿½ï¿½ï¿½:Ë®ï¿½Ü£ï¿½ï¿½ï¿½Òºï¿½×©ï¿½ï¿½
     public Enemy pipe, coin, brick, wave, mogu, castle;
 
-    // ÂíÀï°ÂÑªÁ¿
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Ñªï¿½ï¿½
     public Blood marioblood1, marioblood2, marioblood3;
     public Blood marioblood21, marioblood22, marioblood23;
-    // ±³¾°Í¼Æ¬
+    // ï¿½ï¿½ï¿½ï¿½Í¼Æ¬
     public BackgroundImage bg;
-    // Åö×²±ê¼Ç
+    // ï¿½ï¿½×²ï¿½ï¿½ï¿½
     public boolean hitflag1 = false, hitflag2 = false;
-    // ¶¨ÒåÒ»¸ö¼¯ºÏÈİÆ÷×°ÕÏ°­Îï¶ÔÏó
+    // ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½Ï°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public ArrayList<Enemy> eneryList = new ArrayList<Enemy>();
-    // ¶¨ÒåÒ»¸ö¼¯ºÏÈİÆ÷×°×Óµ¯
+    // ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½Óµï¿½
     public ArrayList<Boom> boomList = new ArrayList<Boom>();
     public ArrayList<Boom> boomList2 = new ArrayList<Boom>();
-    // ×Óµ¯µÄËÙ¶È
+    // ï¿½Óµï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
     public int bspeed = 0;
     public int mapnum = 1;
-    public boolean changeflag = false; // ÂíÀï°ÂÑªÁ¿¸Ä±ä±ê¼Ç
+    public boolean changeflag = false; // ï¿½ï¿½ï¿½ï¿½ï¿½Ñªï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½
     public boolean changeflag2 = false;
-    public boolean endflag = false; // ÓÎÏ·½áÊø±ê¼Ç
-    public int score1 = 0; // Íæ¼Ò1µÃ·Ö
-    public int score2 = 0; // Íæ¼Ò2µÃ·Ö
-    // µØÍ¼Êı¾İ
+    public boolean endflag = false; // ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public int score1 = 0; // ï¿½ï¿½ï¿½1ï¿½Ã·ï¿½
+    public int score2 = 0; // ï¿½ï¿½ï¿½2ï¿½Ã·ï¿½
+    // ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½
     public int[][] map = null;
     private int userid;
     private String username;
-    private boolean isPaused = false; // ÓÎÏ·ÔİÍ£±êÖ¾
+    private boolean isPaused = false; // ï¿½ï¿½Ï·ï¿½ï¿½Í£ï¿½ï¿½Ö¾
 
     public boolean isPaused() {
         return isPaused;
@@ -72,19 +72,19 @@ public class GameFrame extends JFrame {
             map = mp.readMap(mapnum);
         }
 
-        // ÓÎÏ·Íæ·¨ÌáÊ¾´°¿Ú
+        // ï¿½ï¿½Ï·ï¿½æ·¨ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
         JOptionPane.showMessageDialog(
                 null,
-                "Íæ·¨ËµÃ÷:\n" +
-                        "1P£º\n - ¡û/¡ú ¼üÒÆ¶¯\n - ¡ü ¼üÌøÔ¾\n - ¿Õ¸ñ¼ü ·¢Éä×Óµ¯\n" +
-                        "2P£º\n - A/D ¼üÒÆ¶¯\n - W ¼üÌøÔ¾\n - S ·¢Éä×Óµ¯\n" +
-                        "°´ P ¼üÔİÍ£ÓÎÏ·\n°´ Q ¼üÍË³öÓÎÏ·",
-                "ÓÎÏ·Íæ·¨ÌáÊ¾",
+                "ï¿½æ·¨Ëµï¿½ï¿½:\n" +
+                        "1Pï¿½ï¿½\n - ï¿½ï¿½/ï¿½ï¿½ ï¿½ï¿½ï¿½Æ¶ï¿½\n - ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ô¾\n - ï¿½Õ¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½\n" +
+                        "2Pï¿½ï¿½\n - A/D ï¿½ï¿½ï¿½Æ¶ï¿½\n - W ï¿½ï¿½ï¿½ï¿½Ô¾\n - S ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½\n" +
+                        "ï¿½ï¿½ P ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½Ï·\nï¿½ï¿½ Q ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½Ï·",
+                "ï¿½ï¿½Ï·ï¿½æ·¨ï¿½ï¿½Ê¾",
                 JOptionPane.INFORMATION_MESSAGE
         );
 
         this.setSize(800, 450);
-        this.setTitle("³¬¼¶ÂêÀö");
+        this.setTitle("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -96,7 +96,7 @@ public class GameFrame extends JFrame {
         this.score2 = mario2.score2;
         bg = new BackgroundImage();
 
-        // µØÍ¼ÅäÖÃ ´´½¨¸÷ÖÖµÀ¾ß¶ÔÏó
+        // ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ß¶ï¿½ï¿½ï¿½
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[0].length; j++) {
                 switch (map[i][j]) {
@@ -134,7 +134,7 @@ public class GameFrame extends JFrame {
             }
         }
 
-        // Ìí¼ÓÑªÁ¿
+        // ï¿½ï¿½ï¿½ï¿½Ñªï¿½ï¿½
         marioblood1 = new Blood(10, 30, 30, 30, new ImageIcon("image/redheart.jpg").getImage());
         marioblood2 = new Blood(40, 30, 30, 30, new ImageIcon("image/redheart.jpg").getImage());
         marioblood3 = new Blood(70, 30, 30, 30, new ImageIcon("image/redheart.jpg").getImage());
@@ -144,7 +144,7 @@ public class GameFrame extends JFrame {
         mario.start();
         mario2.start();
 
-        // Ö÷Ñ­»·
+        // ï¿½ï¿½Ñ­ï¿½ï¿½
         new Thread(() -> {
             while (true) {
                 if (!isPaused) {
@@ -182,7 +182,7 @@ public class GameFrame extends JFrame {
 
         new Thread(() -> MusicUtil.playBackground()).start();
 
-        // Ìí¼Ó¼üÅÌ¼àÌıÆ÷
+        // ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ï¿½ï¿½
         this.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {}
@@ -192,8 +192,8 @@ public class GameFrame extends JFrame {
                 if (e.getKeyCode() == KeyEvent.VK_Q) {
                     int confirm = JOptionPane.showConfirmDialog(
                             null,
-                            "È·¶¨ÒªÍË³öÓÎÏ·²¢·µ»ØÑ¡Ôñ¹Ø¿¨½çÃæÂğ£¿",
-                            "ÍË³öÓÎÏ·",
+                            "È·ï¿½ï¿½Òªï¿½Ë³ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½Ø¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
+                            "ï¿½Ë³ï¿½ï¿½ï¿½Ï·",
                             JOptionPane.YES_NO_OPTION
                     );
                     if (confirm == JOptionPane.YES_OPTION) {
@@ -247,7 +247,7 @@ public class GameFrame extends JFrame {
             big.setColor(c);
         }
 
-        // »æÖÆÑªÁ¿
+        // ï¿½ï¿½ï¿½ï¿½Ñªï¿½ï¿½
         if (mario.blood == 1) {
             big.drawImage(marioblood1.img, marioblood1.x, marioblood1.y, marioblood1.width, marioblood1.height, null);
         } else if (mario.blood == 2) {
@@ -270,19 +270,19 @@ public class GameFrame extends JFrame {
             big.drawImage(marioblood23.img, marioblood23.x, marioblood23.y, marioblood23.width, marioblood23.height, null);
         }
 
-        // »æÖÆ·ÖÊı
+        // ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½
         big.setFont(new Font("Arial", Font.BOLD, 18));
         big.setColor(Color.WHITE);
         big.drawString("1P Score: " + score1, 150, 50);
         big.drawString("2P Score: " + score2, 560, 50);
 
-        // »æÖÆ³¬¼¶ÂêÀö
+        // ï¿½ï¿½ï¿½Æ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         big.drawImage(mario.img, mario.x, mario.y, mario.width, mario.height, null);
         big.drawImage(mario2.img2, mario2.x2, mario2.y2, mario2.width2, mario2.height2, null);
         g.drawImage(bi, 0, 0, null);
     }
 
-    // ¼ì²é×Óµ¯ÊÇ·ñÅö×²
+    // ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½Ç·ï¿½ï¿½ï¿½×²
     public void checkBoom() {
         for (int i = 0; i < boomList.size(); i++) {
             Boom b = boomList.get(i);
@@ -299,29 +299,49 @@ public class GameFrame extends JFrame {
         }
 
         ArrayList<Enemy> toRemove = new ArrayList<>();
-        for (int i = 0; i < eneryList.size(); i++) {
-            Enemy e = eneryList.get(i);
-            if (e instanceof Turtle) {
-                Turtle turtle = (Turtle) e;
-                if (turtle.isHitByBullet(boomList2) || turtle.isHitByBullet((boomList))) {
-                    if(turtle.isHitByBullet(boomList))
-                    {mario.score += 5;
-                    score1 =mario.score;}
-                    if(turtle.isHitByBullet(boomList2))
-                    {mario2.score2 += 5;
-                    score2 =mario2.score2;}
-                    turtle.isDead = true;
-                    toRemove.add(turtle);
+        Iterator<Boom>it1=boomList.iterator();
+        while(it.hasNext()){
+            Boom boom=it1.next();
+            for(Enemy e:eneryList){
+                if(e instanceof Turtle){
+                    Turtle turtle=(Turtle)e;
+                    if(!turtle.isDead&&turtle.getBounds().intersects(boom.getBounds())){
+                        turtle.isDead=true;
+                        toRemove.add(turtle);
+                        mario.score+=5;
+                        score1=mario.score;
+                        it.remove();
+                        break;//é¿å…å¤šæ¬¡ä¼¤å®³
+                    }
                 }
             }
         }
-        // ÒÆ³ıËÀÍöµÄµĞÈË
+        // å­å¼¹2ï¼ˆmario2ï¼‰å¤„ç†é€»è¾‘
+        Iterator<Boom> it2 = boomList2.iterator();
+        while (it2.hasNext()) {
+        Boom boom = it2.next();
+            for (Enemy e : eneryList) {
+            if (e instanceof Turtle) {
+            Turtle turtle = (Turtle) e;
+                if (!turtle.isDead && turtle.getBounds().intersects(boom.getBounds())) {
+                turtle.isDead = true;
+                toRemove.add(turtle);
+                mario2.score2 += 5;
+                score2 = mario2.score2;
+                it2.remove(); // å­å¼¹ç§»é™¤
+                break;
+                }
+            }
+        }
+    }
+        
+        // ï¿½Æ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½
         for (Enemy enemy : toRemove) {
             eneryList.remove(enemy);
         }
     }
 
-    // ±£´æÓÎÏ·½á¹ûµ½Êı¾İ¿â
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ¿ï¿½
     private void saveGameResult(String result, int userid, String username) {
         String sql = "INSERT INTO game_results (userid, username, player1_score, player1_blood, player2_score, player2_blood, result, timestamp) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -332,14 +352,14 @@ public class GameFrame extends JFrame {
             conn = DatabaseUtil.getConnection();
             pstmt = conn.prepareStatement(sql);
 
-            pstmt.setInt(1, userid); // ÓÃ»§ID
-            pstmt.setString(2, username); // ÓÃ»§Ãû
-            pstmt.setInt(3, score1); // ½ÇÉ«1µÃ·Ö
-            pstmt.setInt(4, mario.blood); // ½ÇÉ«1ÑªÁ¿
-            pstmt.setInt(5, score2); // ½ÇÉ«2µÃ·Ö
-            pstmt.setInt(6, mario2.blood2); // ½ÇÉ«2ÑªÁ¿
-            pstmt.setString(7, result); // ÓÎÏ·½á¹û (Success / Dead)
-            pstmt.setTimestamp(8, new Timestamp(System.currentTimeMillis())); // µ±Ç°Ê±¼ä
+            pstmt.setInt(1, userid); // ï¿½Ã»ï¿½ID
+            pstmt.setString(2, username); // ï¿½Ã»ï¿½ï¿½ï¿½
+            pstmt.setInt(3, score1); // ï¿½ï¿½É«1ï¿½Ã·ï¿½
+            pstmt.setInt(4, mario.blood); // ï¿½ï¿½É«1Ñªï¿½ï¿½
+            pstmt.setInt(5, score2); // ï¿½ï¿½É«2ï¿½Ã·ï¿½
+            pstmt.setInt(6, mario2.blood2); // ï¿½ï¿½É«2Ñªï¿½ï¿½
+            pstmt.setString(7, result); // ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ (Success / Dead)
+            pstmt.setTimestamp(8, new Timestamp(System.currentTimeMillis())); // ï¿½ï¿½Ç°Ê±ï¿½ï¿½
 
             pstmt.executeUpdate();
         } catch (Exception e) {
@@ -349,29 +369,29 @@ public class GameFrame extends JFrame {
         }
     }
 
-    // ¼ì²éÓÎÏ·ÊÇ·ñ½áÊø
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
     public void checkend() throws Exception {
         if (bg.endflag == true) {
             saveGameResult("Success", userid, username);
             saveGameResult(username, mapnum);
-            JOptionPane.showMessageDialog(null, "success", "ÌáÊ¾ÏûÏ¢", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "success", "ï¿½ï¿½Ê¾ï¿½ï¿½Ï¢", JOptionPane.WARNING_MESSAGE);
             bg.endflag = false;
             dispose();
-            ChooseFrame choose = new ChooseFrame(username, userid);// ¹Ø±Õµ±Ç°´°¿Ú²¢´ò¿ªÑ¡Ôñ´°¿Ú
+            ChooseFrame choose = new ChooseFrame(username, userid);// ï¿½Ø±Õµï¿½Ç°ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½Ñ¡ï¿½ñ´°¿ï¿½
         }
     }
     public void saveGameResult(String username, int level) {
         Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
         GameRecordDAO gameRecordDAO = new GameRecordDAO();
 
-        // »ñÈ¡ÓÃ»§µÄÏÖÓĞ¼ÇÂ¼
+        // ï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¼ï¿½Â¼
         List<GameRecord> existingRecords = gameRecordDAO.getGameRecordsByUsername(username);
 
-        int totalScore = score1 + score2; // ¼ÆËã×ÜµÃ·Ö
-        int maxBlood = Math.max(mario.blood, mario2.blood2); // ¼ÆËã×î¸ßÑªÁ¿
+        int totalScore = score1 + score2; // ï¿½ï¿½ï¿½ï¿½ï¿½ÜµÃ·ï¿½
+        int maxBlood = Math.max(mario.blood, mario2.blood2); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñªï¿½ï¿½
 
         if (existingRecords.isEmpty()) {
-            // Èç¹ûÃ»ÓĞÏÖÓĞ¼ÇÂ¼£¬´´½¨ĞÂ¼ÇÂ¼
+            // ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¼ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½Â¼
             GameRecord newRecord = new GameRecord(username, totalScore, maxBlood, currentTimestamp, level);
             gameRecordDAO.saveGameRecord(newRecord);
             JOptionPane.showMessageDialog(null, "Game result saved as new record!");
@@ -379,21 +399,21 @@ public class GameFrame extends JFrame {
             GameRecord existingRecord = existingRecords.get(0);
             int existingLevel = existingRecord.getLevel();
 
-            // Èç¹ûĞÂ¹Ø¿¨¸ßÓÚÏÖÓĞ¼ÇÂ¼£¬Ôò¸üĞÂ¼ÇÂ¼
+            // ï¿½ï¿½ï¿½ï¿½Â¹Ø¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¼ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½Â¼
             if (level > existingLevel) {
                 existingRecord.setScore(totalScore);
                 existingRecord.setBlood(maxBlood);
                 existingRecord.setCreatedAt(currentTimestamp);
                 existingRecord.setLevel(level);
-                gameRecordDAO.updateGameRecord(existingRecord); // ¸üĞÂ¼ÇÂ¼
+                gameRecordDAO.updateGameRecord(existingRecord); // ï¿½ï¿½ï¿½Â¼ï¿½Â¼
                 JOptionPane.showMessageDialog(null, "Level updated to " + level + "!");
             } else if (level == existingLevel) {
-                // Èç¹û¹Ø¿¨ÏàÍ¬£¬¼ì²éµÃ·ÖÊÇ·ñ¸ü¸ß
+                // ï¿½ï¿½ï¿½ï¿½Ø¿ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½Ã·ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
                 if (totalScore > existingRecord.getScore()) {
                     existingRecord.setScore(totalScore);
                     existingRecord.setBlood(maxBlood);
                     existingRecord.setCreatedAt(currentTimestamp);
-                    gameRecordDAO.updateGameRecord(existingRecord); // ¸üĞÂ¼ÇÂ¼
+                    gameRecordDAO.updateGameRecord(existingRecord); // ï¿½ï¿½ï¿½Â¼ï¿½Â¼
                     JOptionPane.showMessageDialog(null, "Score updated to " + totalScore + "!");
                 } else {
                     JOptionPane.showMessageDialog(null, "No update needed. Existing score is higher or equal.");
@@ -407,7 +427,7 @@ public class GameFrame extends JFrame {
 
 
 
-    // ¼ì²éÁ½¸ö½ÇÉ«µÄ¾àÀë
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«ï¿½Ä¾ï¿½ï¿½ï¿½
     public void checkdistance() {
         if ((mario.x - mario2.x2) >= 400) {
             mario.xspeed = 0;
@@ -429,7 +449,7 @@ public class GameFrame extends JFrame {
                     if (mario.blood == 0 && !endflag) {
                         saveGameResult("Mario1 is dead", userid, username);
                         saveGameResult(username, mapnum);
-                        JOptionPane.showMessageDialog(null, "Mario1 is dead", "ÌáÊ¾ÏûÏ¢", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Mario1 is dead", "ï¿½ï¿½Ê¾ï¿½ï¿½Ï¢", JOptionPane.WARNING_MESSAGE);
                         endflag = true;
                         dispose();
                         ChooseFrame choose = new ChooseFrame(username, userid);
@@ -448,14 +468,14 @@ public class GameFrame extends JFrame {
             hitflag1 = false;
         }
 
-        int bufferZone = 10;// Åö×²¼ì²âµÄ»º³åÇø
+        int bufferZone = 10;// ï¿½ï¿½×²ï¿½ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½ï¿½
 
         if (mario.x + mario.width > castle.x - bufferZone && mario.x < castle.x + castle.width + bufferZone &&
                 mario.y + mario.height > castle.y - bufferZone && mario.y < castle.y + castle.height + bufferZone &&
                 mario2.x2 + mario2.width2 >                castle.x - bufferZone && mario2.x2 < castle.x + castle.width + bufferZone &&
                 mario2.y2 + mario2.height2 > castle.y - bufferZone && mario2.y2 < castle.y + castle.height + bufferZone) {
             if (!endflag) {
-                JOptionPane.showMessageDialog(null, "Í¨¹Ø£¡", "ÓÎÏ·ÌáÊ¾", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Í¨ï¿½Ø£ï¿½", "ï¿½ï¿½Ï·ï¿½ï¿½Ê¾", JOptionPane.INFORMATION_MESSAGE);
                 endflag = true;
                 saveGameResult("Success", userid, username);
                 dispose();
@@ -464,7 +484,7 @@ public class GameFrame extends JFrame {
         }
         if (mario.blood == 0 && !endflag) {
             saveGameResult("Mario1 is dead", userid, username);
-            JOptionPane.showMessageDialog(null, "Mario1 is dead", "ÌáÊ¾ÏûÏ¢", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Mario1 is dead", "ï¿½ï¿½Ê¾ï¿½ï¿½Ï¢", JOptionPane.WARNING_MESSAGE);
             endflag = true;
             dispose();
             ChooseFrame choose = new ChooseFrame(username, userid);
@@ -481,7 +501,7 @@ public class GameFrame extends JFrame {
                     if (mario2.blood2 == 0 && !endflag) {
                         saveGameResult("Mario2 is dead", userid, username);
                         saveGameResult(username, mapnum);
-                        JOptionPane.showMessageDialog(null, "Mario2 is dead", "ÌáÊ¾ÏûÏ¢", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Mario2 is dead", "ï¿½ï¿½Ê¾ï¿½ï¿½Ï¢", JOptionPane.WARNING_MESSAGE);
                         endflag = true;
                         dispose();
                         ChooseFrame choose = new ChooseFrame(username, userid);
@@ -507,7 +527,7 @@ public class GameFrame extends JFrame {
                 mario2.x2 + mario2.width2 > castle.x - bufferZone && mario2.x2 < castle.x + castle.width + bufferZone &&
                 mario2.y2 + mario2.height2 > castle.y - bufferZone && mario2.y2 < castle.y + castle.height + bufferZone) {
             if (!endflag) {
-                JOptionPane.showMessageDialog(null, "Í¨¹Ø£¡", "ÓÎÏ·ÌáÊ¾", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Í¨ï¿½Ø£ï¿½", "ï¿½ï¿½Ï·ï¿½ï¿½Ê¾", JOptionPane.INFORMATION_MESSAGE);
                 endflag = true;
                 saveGameResult("Success", userid, username);
                 dispose();
@@ -516,7 +536,7 @@ public class GameFrame extends JFrame {
         }
         if (mario2.blood2 == 0 && !endflag) {
             saveGameResult("Mario2 is dead", userid, username);
-            JOptionPane.showMessageDialog(null, "Mario2 is dead", "ÌáÊ¾ÏûÏ¢", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Mario2 is dead", "ï¿½ï¿½Ê¾ï¿½ï¿½Ï¢", JOptionPane.WARNING_MESSAGE);
             endflag = true;
             dispose();
             ChooseFrame choose = new ChooseFrame(username, userid);
